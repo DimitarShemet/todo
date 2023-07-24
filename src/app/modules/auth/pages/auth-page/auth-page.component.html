@@ -1,0 +1,16 @@
+<div class="wrap" [ngClass]="isSpinning ? 'wrap__dark' : ''">
+  <nz-spin nzSimple [nzSize]="'large'" [nzSpinning]="isSpinning"></nz-spin>
+  <div class="form__wrap">
+    <h1>Log In Page</h1>
+    <auth-form (enableSpinner)="enableSpinner($event)"></auth-form>
+  </div>
+  <nz-modal
+    [nzVisible]="$error | async"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+  >
+    <ng-container *nzModalContent>
+      <span class="popup__error">{{ $error | async }}</span>
+    </ng-container>
+  </nz-modal>
+</div>

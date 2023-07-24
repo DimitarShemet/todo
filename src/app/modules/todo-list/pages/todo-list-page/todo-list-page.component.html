@@ -1,0 +1,46 @@
+<nz-spin
+  nzSimple
+  [nzSize]="'large'"
+  [nzSpinning]="!($todos | async).length || isSpinning"
+></nz-spin>
+<div class="wrap" *ngIf="($todos | async).length">
+  <h1>Todo List Page</h1>
+  <button nz-button nzType="primary" nzSize="default" type="button">
+    <a [routerLink]="todoCreatePage">Create Todo</a>
+  </button>
+  <div class="table__wrapper">
+    <nz-table #basicTable [nzData]="$todos | async" [nzPageSize]="4">
+      <thead>
+        <tr>
+          <th *ngFor="let elem of tableHeaders">{{ elem }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let elem of basicTable.data; index as i"
+          (click)="openEditTodoPage(elem.id)"
+        >
+          <td>{{ elem.title }}</td>
+          <td>{{ elem.completed }}</td>
+          <td>
+            <span
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+              (click)="deleteTodo(elem.id)"
+            ></span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+<nz-modal
+  [nzVisible]="$error | async"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <span class="popup__error">{{ $error | async }}</span>
+  </ng-container>
+</nz-modal>

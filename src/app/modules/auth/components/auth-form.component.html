@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label nzRequired>Fill in email</nz-form-label>
+    <nz-input-group>
+      <input nz-input formControlName="username" placeholder="email" />
+    </nz-input-group>
+    <ng-template #suffixTemplateInfo>
+      <span nz-icon nzType="info-circle"></span>
+    </ng-template>
+    <small class="validation" *ngIf="username.dirty">
+      {{ username.errors | getErrorMessage }}
+    </small>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Fill in password</nz-form-label>
+    <nz-input-group>
+      <input
+        nz-input
+        formControlName="password"
+        placeholder="password"
+        type="password"
+      />
+    </nz-input-group>
+    <ng-template #suffixTemplateInfo>
+      <span nz-icon nzType="info-circle"></span>
+    </ng-template>
+    <small class="validation" *ngIf="password.dirty">
+      {{ password.errors | getErrorMessage }}
+    </small>
+  </nz-form-item>
+
+  <button nz-button nzType="primary" nzSize="large" nzBlock type="submit">
+    Log In
+  </button>
+</form>

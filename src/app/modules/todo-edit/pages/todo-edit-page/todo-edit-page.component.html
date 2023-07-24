@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <h1>Todo Edit Page</h1>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <nz-form-item class="todo__title">
+      <nz-form-label nzRequired>Fill in title</nz-form-label>
+      <nz-input-group>
+        <input nz-input formControlName="title" placeholder="title" />
+      </nz-input-group>
+      <ng-template #suffixTemplateInfo>
+        <span nz-icon nzType="info-circle"></span>
+      </ng-template>
+      <small class="validation" *ngIf="title.dirty">
+        {{ title.errors | getErrorMessage }}
+      </small>
+    </nz-form-item>
+    <nz-form-item class="todo__completed">
+      <nz-form-label>Completed</nz-form-label>
+      <label nz-checkbox formControlName="completed"></label>
+    </nz-form-item>
+
+    <button nz-button nzType="primary" nzSize="large" nzBlock type="submit">
+      Edit Todo
+    </button>
+  </form>
+  <nz-modal
+    [nzVisible]="$error | async"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+  >
+    <ng-container *nzModalContent>
+      <span class="popup__error">{{ $error | async }}</span>
+    </ng-container>
+  </nz-modal>
+</div>

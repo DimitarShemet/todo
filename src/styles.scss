@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+.validation {
+  color: red;
+  position: absolute;
+  font-size: 11px;
+  bottom: -17px;
+}
+nz-form-item {
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  top: 10px;
+  color: red;
+  left: 10px;
+}
+.popup__error {
+  color: red;
+}
+.wrap__dark {
+  background: #000000;
+  opacity: 0.3;
+}
