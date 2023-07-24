@@ -21,9 +21,11 @@ export class AuthPageComponent {
 
   handleOk(): void {
     this.store.dispatch(resetError());
+    this.isSpinning = false;
   }
 
   handleCancel(): void {
     this.store.dispatch(resetError());
+    this.isSpinning = false;
   }
 }
